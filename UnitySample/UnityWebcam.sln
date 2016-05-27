@@ -1,0 +1,29 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{31D7C034-6A48-B351-511D-3327DE92CCBB}") = "UnityWebcam", "Assembly-CSharp.csproj", "{A9030E16-E41F-D264-F799-646233B948ED}"
+EndProject
+Project("{31D7C034-6A48-B351-511D-3327DE92CCBB}") = "UnityWebcam", "Assembly-CSharp-Editor.csproj", "{413A5073-4620-A495-2156-06A23421B168}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A9030E16-E41F-D264-F799-646233B948ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9030E16-E41F-D264-F799-646233B948ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9030E16-E41F-D264-F799-646233B948ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9030E16-E41F-D264-F799-646233B948ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{413A5073-4620-A495-2156-06A23421B168}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{413A5073-4620-A495-2156-06A23421B168}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{413A5073-4620-A495-2156-06A23421B168}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{413A5073-4620-A495-2156-06A23421B168}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
