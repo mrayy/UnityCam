@@ -1,6 +1,27 @@
 UnityCam
 ========
 
+This plugin provides a way for unity3D applications and games to output the viewport to an external application and use the viewport as a webcamera for such applications.
+
+For example: Recording viewport in a webcamera capture software (Sharpcap), or using it in browser applications (tested in Chrome).
+
+Tested Platforms:
+-----------------
+- Tested on Windows 64 bits
+- Tested using Unity 32,64 bits
+
+Usage
+=====
+
+1) Before using, access folder "RunMe First", and run "Register.bat" to register UnityCam plugin in Windows
+2) Inside unity, attach to the main camera the following component:
+ UnityCam\Scripts\UnityCam.cs
+
+3) Hit Play, now unity will stream whatever being rendered as a webcamera. You can use it in browser or any video capture program via the new camera UnityCam
+
+Check the included sample scene for a fully working example.
+
+
 License
 -------
 
