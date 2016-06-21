@@ -1,5 +1,6 @@
 UnityCam
 ========
+![UnityCam](http://myamens.com/Uploads/UnityCam/UnityCam.gif)
 
 This plugin provides a way for unity3D applications and games to output the viewport to an external application and use the viewport as a webcamera for such applications.
 
