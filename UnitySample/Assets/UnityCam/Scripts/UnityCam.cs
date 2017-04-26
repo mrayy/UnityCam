@@ -62,7 +62,7 @@ public class UnityCam : MonoBehaviour {
 		SendTexture (_instance,tex.GetNativeTexturePtr());
 
 		if(BlitLocaly)
-			Graphics.Blit (tex, destination);
+			Graphics.Blit (source, destination);
 	}
 
 	void OnDestroy() {
