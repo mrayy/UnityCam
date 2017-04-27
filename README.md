@@ -11,6 +11,12 @@ Tested Platforms:
 - Tested on Windows 64 bits
 - Tested using Unity 32,64 bits
 
+Important Note:
+-----------------
+Currently the driver works only with 32-bit apps (chrome, skype, ..etc)
+To run on 64-bit apps I will need to recompile the service using 64-bit dependencies (TO-DO)
+
+
 Usage
 =====
 
