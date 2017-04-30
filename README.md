@@ -11,16 +11,10 @@ Tested Platforms:
 - Tested on Windows 64 bits
 - Tested using Unity 32,64 bits
 
-Important Note:
------------------
-Currently the driver works only with 32-bit apps (chrome, skype, ..etc)
-To run on 64-bit apps I will need to recompile the service using 64-bit dependencies (TO-DO)
-
-
 Usage
 =====
 
-1) Before using, access folder "RunMe First", and run "Register.bat" to register UnityCam plugin in Windows.
+1) Before using, access folder "RunMe First", access the target platform folder (x32,x64) which depends on the application you will use to view the virtual camera in. Right click on "Register.bat" and choose "Run as Administrator" to register UnityCam plugin in Windows. A window will appear to confirm that the plugin was successfully registered.
 
 2) Inside unity, attach to the main camera the following component:
  UnityCam\Scripts\UnityCam.cs
