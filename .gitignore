@@ -33,6 +33,10 @@ TestResult.xml
 [Rr]eleasePS/
 dlldata.c
 
+UnityWebcam/x64/
+UnityWebcam/Win32/
+UnityWebcam/ipch/
+
 # DNX
 project.lock.json
 artifacts/

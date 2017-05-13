@@ -88,6 +88,28 @@ STDAPI DllRegisterServer()
 {
     HRESULT res= RegisterFilters(TRUE);
 
+	//this quick hack lets unity read the virtual camera too!
+	// thanks for:
+	//https://social.msdn.microsoft.com/Forums/windowsdesktop/en-US/cd2b9d2d-b961-442d-8946-fdc038fed530/where-to-specify-device-id-in-the-filter?forum=windowsdirectshowdevelopment
+	HKEY hKey;
+	std::string str_video_capture_device_key("SOFTWARE\\Classes\\CLSID\\{860BB310-5D01-11d0-BD3B-00A0C911CE86}\\Instance\\");
+
+	LPOLESTR olestr_CLSID;
+	StringFromCLSID(CLSID_UnityCamService, &olestr_CLSID);
+
+	std::wstring wstr_CLSID(olestr_CLSID);
+
+	int size_needed = WideCharToMultiByte(CP_UTF8, 0, &wstr_CLSID[0], (int)wstr_CLSID.size(), NULL, 0, NULL, NULL);
+	std::string str2(size_needed, 0);
+	WideCharToMultiByte(CP_UTF8, 0, &wstr_CLSID[0], (int)wstr_CLSID.size(), &str2[0], size_needed, NULL, NULL);
+
+	str_video_capture_device_key.append(str2);
+
+	RegOpenKeyExA(HKEY_LOCAL_MACHINE, str_video_capture_device_key.c_str(), 0, KEY_ALL_ACCESS, &hKey);
+	LPCSTR value = ("DevicePath");
+	LPCSTR data = "foo:bar";
+	RegSetValueExA(hKey, value, 0, REG_SZ, (LPBYTE)data, strlen(data) + 1);
+	RegCloseKey(hKey);
 	if (!SUCCEEDED(res))
 	{
 		//MessageBox(0, L"Failed to RegisterServer", L"Error", NULL);
