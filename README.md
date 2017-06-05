@@ -12,6 +12,7 @@ Tested Platforms:
 - Tested using Unity 32,64 bits
 
 For Skype, please use x32 version of the service found in "RunMe First" folder, check instructions bellow for how to run it.
+- Skype still has an issue, the camera doesnt connect when making a call..
 
 Usage
 =====
