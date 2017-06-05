@@ -11,6 +11,8 @@ Tested Platforms:
 - Tested on Windows 64 bits
 - Tested using Unity 32,64 bits
 
+For Skype, please use x32 version of the service found in "RunMe First" folder, check instructions bellow for how to run it.
+
 Usage
 =====
 

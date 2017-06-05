@@ -180,6 +180,21 @@ CaptureSource::CaptureStream::~CaptureStream()
 	}
 }
 
+HRESULT CaptureSource::CaptureStream::QueryInterface(REFIID riid, void **ppv)
+{
+	// Standard OLE stuff
+	if (riid == _uuidof(IAMStreamConfig))
+		*ppv = (IAMStreamConfig*)this;
+	else if (riid == _uuidof(IKsPropertySet))
+		*ppv = (IKsPropertySet*)this;
+	else
+		return CSourceStream::QueryInterface(riid, ppv);
+
+	AddRef();
+	return S_OK;
+}
+
+
 STDMETHODIMP CaptureSource::CaptureStream::NonDelegatingQueryInterface(REFIID riid, void ** ppv)
 {
 	if(ppv == NULL) {
@@ -357,6 +372,25 @@ HRESULT CaptureSource::CaptureStream::DecideBufferSize(IMemAllocator * pAlloc, A
 	}
 	return S_OK;
 }
+//////////////////////////////////////////////////////////////////////////
+// This is called when the output format has been negotiated
+//////////////////////////////////////////////////////////////////////////
+HRESULT CaptureSource::CaptureStream::SetMediaType(const CMediaType *pmt)
+{
+	DECLARE_PTR(VIDEOINFOHEADER, pvi, pmt->Format());
+	HRESULT hr = CSourceStream::SetMediaType(pmt);
+	return hr;
+}
+
+
+// This method is called to see if a given output format is supported
+HRESULT CaptureSource::CaptureStream::CheckMediaType(const CMediaType *pMediaType)
+{
+	VIDEOINFOHEADER *pvi = (VIDEOINFOHEADER *)(pMediaType->Format());
+	if (*pMediaType != m_mt)
+		return E_INVALIDARG;
+	return S_OK;
+} // CheckMediaType
 
 STDMETHODIMP CaptureSource::CaptureStream::Notify(IBaseFilter *pSelf, Quality q)
 {

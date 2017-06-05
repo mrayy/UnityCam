@@ -10,6 +10,7 @@ class CaptureSharedMemory;
 
 extern const AMOVIESETUP_FILTER sudCaptureSource;
 extern const AMOVIESETUP_PIN sudCaptureSourceOut;
+#define DECLARE_PTR(type, ptr, expr) type* ptr = (type*)(expr);
 
 class CaptureSource :
 	public CSource, public IQualityControl, public ICamSource
@@ -45,7 +46,12 @@ private:
 
 		virtual ~CaptureStream();
 
-		DECLARE_IUNKNOWN;
+		//////////////////////////////////////////////////////////////////////////
+		//  IUnknown
+		//////////////////////////////////////////////////////////////////////////
+		STDMETHODIMP QueryInterface(REFIID riid, void **ppv);
+		STDMETHODIMP_(ULONG) AddRef() { return GetOwner()->AddRef(); }                                                          
+		STDMETHODIMP_(ULONG) Release() { return GetOwner()->Release(); }
 
 		virtual STDMETHODIMP NonDelegatingQueryInterface(REFIID riid, void ** ppv);
 
@@ -69,7 +75,10 @@ private:
         
         virtual STDMETHODIMP GetNumberOfCapabilities(int *piCount, int *piSize);
         
-        virtual STDMETHODIMP GetStreamCaps(int iIndex, AM_MEDIA_TYPE **ppmt, BYTE *pSCC);
+		virtual STDMETHODIMP GetStreamCaps(int iIndex, AM_MEDIA_TYPE **ppmt, BYTE *pSCC);
+
+		HRESULT CheckMediaType(const CMediaType *pMediaType);
+		HRESULT SetMediaType(const CMediaType *pmt);
 
 	protected:
 

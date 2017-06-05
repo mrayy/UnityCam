@@ -38,7 +38,7 @@
 				Out.position.z = 1.0;
 				Out.position.w = 1.0;
 			  	Out.texCoord.xy =IN.texcoord.xy*TextureRect.zw+TextureRect.xy;
-			  	Out.texCoord.x=1-Out.texCoord.x;
+			  	Out.texCoord.xy=1-Out.texCoord.xy;
 			   return Out;
 			}
 
@@ -82,7 +82,8 @@
 				Out.position.xy=2*sign(IN.vertex.xy)-1;
 				Out.position.z = 1.0;
 				Out.position.w = 1.0;
-			  	Out.texCoord.xy =1-IN.texcoord.xy*TextureRect.zw+TextureRect.xy;
+			  	Out.texCoord.xy =IN.texcoord.xy*TextureRect.zw+TextureRect.xy;
+			  	Out.texCoord.y=1-Out.texCoord.y;
 			   return Out;
 			}
 
