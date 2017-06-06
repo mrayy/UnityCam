@@ -38,7 +38,7 @@ public:
 private:
 	HRESULT Init(CaptureSharedMemory* pReceiver, int fps);
 
-	class CaptureStream : public CSourceStream, public IKsPropertySet, public IAMStreamConfig
+	class CaptureStream : public CSourceStream, public IAMStreamControl, public IKsPropertySet, public IAMStreamConfig, public IAMPushSource, public IAMLatency
 	{
 	public:
 
@@ -80,6 +80,54 @@ private:
 		HRESULT CheckMediaType(const CMediaType *pMediaType);
 		HRESULT SetMediaType(const CMediaType *pmt);
 
+		//////////////////////////////////////////////////////////////////////////
+
+		virtual HRESULT STDMETHODCALLTYPE StartAt(
+			/* [annotation][in] */
+			_In_opt_  const REFERENCE_TIME *ptStart,
+			/* [in] */ DWORD dwCookie) ;
+
+		virtual HRESULT STDMETHODCALLTYPE StopAt(
+			/* [annotation][in] */
+			_In_opt_  const REFERENCE_TIME *ptStop,
+			/* [in] */ BOOL bSendExtra,
+			/* [in] */ DWORD dwCookie) ;
+
+		virtual HRESULT STDMETHODCALLTYPE GetInfo(
+			/* [annotation][out] */
+			_Out_  AM_STREAM_INFO *pInfo) ;
+
+// IAMPushSource
+
+		virtual HRESULT STDMETHODCALLTYPE GetPushSourceFlags(
+			/* [annotation][out] */
+			_Out_  ULONG *pFlags) ;
+
+		virtual HRESULT STDMETHODCALLTYPE SetPushSourceFlags(
+			/* [in] */ ULONG Flags) ;
+
+		virtual HRESULT STDMETHODCALLTYPE SetStreamOffset(
+			/* [in] */ REFERENCE_TIME rtOffset) ;
+
+		virtual HRESULT STDMETHODCALLTYPE GetStreamOffset(
+			/* [annotation][out] */
+			_Out_  REFERENCE_TIME *prtOffset) ;
+
+		virtual HRESULT STDMETHODCALLTYPE GetMaxStreamOffset(
+			/* [annotation][out] */
+			_Out_  REFERENCE_TIME *prtMaxOffset) ;
+
+		virtual HRESULT STDMETHODCALLTYPE SetMaxStreamOffset(
+			/* [in] */ REFERENCE_TIME rtMaxOffset) ;
+
+
+		virtual HRESULT STDMETHODCALLTYPE GetLatency(
+			/* [annotation][in] */
+			_Out_  REFERENCE_TIME *prtLatency)
+		{
+
+			return NOERROR;
+		}
 	protected:
 
 	    virtual HRESULT GetMediaType(/*int iPos,*/CMediaType *pMediaType);

@@ -218,15 +218,34 @@ STDMETHODIMP CaptureSource::CaptureStream::NonDelegatingQueryInterface(REFIID ri
 
 STDMETHODIMP CaptureSource::CaptureStream::QuerySupported(REFGUID rguidPropSet, ULONG ulId, PULONG pulTypeSupport)
 {
+
+	if (rguidPropSet != AMPROPSETID_Pin) return E_PROP_SET_UNSUPPORTED;
+	if (ulId != AMPROPERTY_PIN_CATEGORY) return E_PROP_ID_UNSUPPORTED;
+	// We support getting this property, but not setting it.
+	if (pulTypeSupport) *pulTypeSupport = KSPROPERTY_SUPPORT_GET;
+	return S_OK;
+	/*
 	if(rguidPropSet == AMPROPSETID_Pin && ulId == AMPROPERTY_PIN_CATEGORY) {
 		*pulTypeSupport = KSPROPERTY_SUPPORT_GET;
 		return S_OK;
 	}
-	return E_NOTIMPL;
+	return E_NOTIMPL;*/
 }
 
 STDMETHODIMP CaptureSource::CaptureStream::Get(REFGUID rguidPropSet, ULONG ulId, LPVOID pInstanceData, ULONG ulInstanceLength, LPVOID pPropertyData, ULONG ulDataLength, PULONG pulBytesReturned)
 {
+
+	if (rguidPropSet != AMPROPSETID_Pin)             return E_PROP_SET_UNSUPPORTED;
+	if (ulId != AMPROPERTY_PIN_CATEGORY)        return E_PROP_ID_UNSUPPORTED;
+	if (pPropertyData == NULL && pulBytesReturned == NULL)   return E_POINTER;
+
+	if (pulBytesReturned) *pulBytesReturned = sizeof(GUID);
+	if (pPropertyData == NULL)          return S_OK; // Caller just wants to know the size. 
+	if (ulDataLength < sizeof(GUID))  return E_UNEXPECTED;// The buffer is too small.
+
+	*(GUID *)pPropertyData = PIN_CATEGORY_CAPTURE;
+	return S_OK;
+	/*
 	if(rguidPropSet == AMPROPSETID_Pin && ulId == AMPROPERTY_PIN_CATEGORY) {
 		if(pPropertyData == NULL) {
 			return E_POINTER;
@@ -238,7 +257,7 @@ STDMETHODIMP CaptureSource::CaptureStream::Get(REFGUID rguidPropSet, ULONG ulId,
 		*pulBytesReturned = sizeof(GUID);
 		return S_OK;
 	}
-	return E_NOTIMPL;
+	return E_NOTIMPL;*/
 }
 
 STDMETHODIMP CaptureSource::CaptureStream::Set(REFGUID rguidPropSet, ULONG ulId, LPVOID pInstanceData, ULONG ulInstanceLength, LPVOID pPropertyData, ULONG ulDataLength)
@@ -570,3 +589,78 @@ HRESULT CaptureSource::CaptureStream::GetScaling(int width, int height, double* 
 	*pOffsetY = ay;
 	return S_OK;
 }
+//////////////////////////////////////////////////////////////////////////
+
+HRESULT CaptureSource::CaptureStream::StartAt(
+	/* [annotation][in] */
+	_In_opt_  const REFERENCE_TIME *ptStart,
+	/* [in] */ DWORD dwCookie)
+{
+
+	return NOERROR;
+}
+
+ HRESULT CaptureSource::CaptureStream::StopAt(
+	/* [annotation][in] */
+	_In_opt_  const REFERENCE_TIME *ptStop,
+	/* [in] */ BOOL bSendExtra,
+	/* [in] */ DWORD dwCookie)
+ {
+
+	 return NOERROR;
+ }
+
+ HRESULT CaptureSource::CaptureStream::GetInfo(
+	/* [annotation][out] */
+	_Out_  AM_STREAM_INFO *pInfo)
+ {
+	 return NOERROR;
+
+ }
+////
+
+ HRESULT CaptureSource::CaptureStream::GetPushSourceFlags(
+	/* [annotation][out] */
+	_Out_  ULONG *pFlags)
+ {
+	 *pFlags = AM_PUSHSOURCECAPS_INTERNAL_RM;
+	 return NOERROR;
+
+ }
+
+ HRESULT CaptureSource::CaptureStream::SetPushSourceFlags(
+	 /* [in] */ ULONG Flags)
+ {
+	 return E_NOTIMPL;
+
+ }
+
+ HRESULT CaptureSource::CaptureStream::SetStreamOffset(
+	 /* [in] */ REFERENCE_TIME rtOffset)
+ {
+	 return NOERROR;
+
+ }
+
+ HRESULT CaptureSource::CaptureStream::GetStreamOffset(
+	/* [annotation][out] */
+	_Out_  REFERENCE_TIME *prtOffset)
+ {
+	 *prtOffset = 0;
+	 return NOERROR;
+ }
+
+ HRESULT CaptureSource::CaptureStream::GetMaxStreamOffset(
+	/* [annotation][out] */
+	_Out_  REFERENCE_TIME *prtMaxOffset)
+ {
+	 *prtMaxOffset = 0;
+	 return NOERROR;
+
+ }
+
+ HRESULT CaptureSource::CaptureStream::SetMaxStreamOffset(
+	 /* [in] */ REFERENCE_TIME rtMaxOffset)
+ {
+	 return NOERROR;
+ }
