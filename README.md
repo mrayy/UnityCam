@@ -25,6 +25,10 @@ Usage
 
 Check the included sample scene for a fully working example.
 
+Build
+=====
+Make sure to set Architecture to x86_64 in the Build Settings in order to get the plugin running when deployed.
+
 
 License
 -------
