@@ -21,12 +21,15 @@ namespace UnityStandardAssets.ImageEffects
 
         override protected void Start()
         {
+#if UNITY_5_5_1
             if (!SystemInfo.supportsRenderTextures)
             {
                 enabled = false;
                 return;
             }
-            base.Start();
+#elif UNITY_2019
+#endif
+			base.Start();
         }
 
         override protected void OnDisable()

@@ -16,21 +16,23 @@ namespace UnityStandardAssets.ImageEffects
 
         protected virtual void Start()
         {
-            // Disable if we don't support image effects
-            if (!SystemInfo.supportsImageEffects)
+#if UNITY_5_5_1
+			// Disable if we don't support image effects
+			if (!SystemInfo.supportsImageEffects)
             {
                 enabled = false;
                 return;
             }
-
-            // Disable the image effect if the shader can't
-            // run on the users graphics card
-            if (!shader || !shader.isSupported)
+#elif UNITY_2019
+#endif
+			// Disable the image effect if the shader can't
+			// run on the users graphics card
+			if (!shader || !shader.isSupported)
                 enabled = false;
-        }
+		}
 
 
-        protected Material material
+		protected Material material
         {
             get
             {
