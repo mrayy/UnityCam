@@ -73,7 +73,7 @@ public class UnityCam : MonoBehaviour {
 	}
 
 	class RenderEvent : MonoBehaviour {
-		public Material material;
+		public Material material = default;
 
 		void OnRenderImage(RenderTexture source, RenderTexture destination) {
 			if (material == null) {
