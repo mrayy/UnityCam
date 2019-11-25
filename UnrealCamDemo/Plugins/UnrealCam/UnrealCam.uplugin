@@ -1,0 +1,23 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "UnrealCam",
+	"Description": "Share your camera view as a webcam.",
+	"Category": "Other",
+	"CreatedBy": "ArmainAP",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": true,
+	"IsBetaVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "UnrealCam",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	]
+}
