@@ -8,9 +8,9 @@
 			"Name": "UnrealCamDemo",
 			"Type": "Runtime",
 			"LoadingPhase": "Default",
-			"AdditionalDependencies": [
-				"Engine"
-			]
+      "AdditionalDependencies": [
+        "Engine"
+      ]
 		}
 	]
 }
