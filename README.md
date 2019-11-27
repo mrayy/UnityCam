@@ -30,6 +30,10 @@ Build
 Make sure to set Architecture to x86_64 in the Build Settings in order to get the plugin running when deployed.
 
 
+UPDATE 2019/November
+====================
+Thanks to @ArmainAP, this plugin now supports UE4. Plugin for UE4 is located under "UnrealCamDemo" folder.
+
 License
 -------
 
