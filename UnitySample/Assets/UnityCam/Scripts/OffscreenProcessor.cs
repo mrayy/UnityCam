@@ -42,9 +42,10 @@ public class OffscreenProcessor  {
 		}
 	}
 
-	public OffscreenProcessor()
+	public OffscreenProcessor(string shader= "Diffuse")
 	{
-		_ProcessingMaterial = new Material (Shader.Find("Diffuse"));
+        Shader s = Shader.Find(shader);
+        _ProcessingMaterial = new Material (s);
 		TargetFormat = RenderTextureFormat.Default;
 	}
 	void _Setup(Texture InputTexture,int downSample)

@@ -36,8 +36,8 @@ public class UnityCam : MonoBehaviour {
 		//Init UnityWebCamera plugin
 		_instance = CreateTextureWrapper ();
 
-		_BlitterProcessor = new OffscreenProcessor ();
-		_BlitterProcessor.ShaderName = "UnityCam/Image/Blitter";
+		_BlitterProcessor = new OffscreenProcessor ("UnityCam/Image/Blitter");
+
 
 		_wrapper = new TextureWrapper ();
 
