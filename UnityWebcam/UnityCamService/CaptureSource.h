@@ -38,7 +38,7 @@ public:
 private:
 	HRESULT Init(CaptureSharedMemory* pReceiver, int fps);
 
-	class CaptureStream : public CSourceStream, public IAMStreamControl, public IKsPropertySet, public IAMStreamConfig, public IAMPushSource, public IAMLatency
+	class CaptureStream : public CSourceStream, public IAMStreamControl, public IKsPropertySet, public IAMStreamConfig, public IAMPushSource
 	{
 	public:
 

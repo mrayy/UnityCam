@@ -114,7 +114,7 @@ STDAPI DllRegisterServer()
 	RegOpenKeyEx(HKEY_LOCAL_MACHINE, str_video_capture_device_key.c_str(), 0, KEY_ALL_ACCESS, &hKey);
 	LPCSTR value = ("DevicePath");
 	LPCSTR data = "foo:bar";
-	RegSetValueExA(hKey, value, 0, REG_SZ, (LPBYTE)data, strlen(data) + 1);
+	RegSetValueExA(hKey, value, 0, REG_SZ, (LPBYTE)data, (DWORD)strlen(data) + 1);
 	RegCloseKey(hKey);
 	if (!SUCCEEDED(res))
 	{
